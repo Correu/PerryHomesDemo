@@ -1,8 +1,13 @@
+using PerryHomesDemo.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<UsersContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.WebHost.ConfigureKestrel(options =>
 {
     options.ListenAnyIP(80); // Ensures it listens on all network interfaces
