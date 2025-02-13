@@ -1,5 +1,6 @@
 ﻿namespace PerryHomesDemo.Models
 {
+    using Microsoft.EntityFrameworkCore;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,8 +9,21 @@
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int UserId { get; set; }
-        public required string UserName { get; set; }
-        public required string Password { get; set; }
+        public int id { get; set; }
+        public required string username { get; set; }
+        public required string email { get; set; }
+        public required string password { get; set; }
+        [Timestamp]
+        public byte[]? created_at { get; set; }
+    }
+
+    public class UsersContext : DbContext
+    {
+        public UsersContext(DbContextOptions<UsersContext> options)
+            : base(options)
+        {
+        }
+
+        public DbSet<Users> Users { get; set; } = null!;
     }
 }
