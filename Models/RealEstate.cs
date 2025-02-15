@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace PerryHomesDemo.Models
+﻿namespace PerryHomesDemo.Models
 {
+    using Microsoft.EntityFrameworkCore;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     [Table("realEstate")]
     public class RealEstate
     {
@@ -12,7 +12,7 @@ namespace PerryHomesDemo.Models
         public int id { get; set; }
         public required string address { get; set; }
         public required string value { get; set; }
-        public required string type { get; set; }
+        public required int type { get; set; }
     }
 
     public class RealEstateContext : DbContext

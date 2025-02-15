@@ -1,16 +1,14 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Houses";
 }
-<h2>Users</h2>
-
-<table class="table" id="usersTable">
+<h2>Houses</h2>
+<table class="table" id="realEstateTable">
     <thead>
         <tr>
             <th>ID</th>
-            <th>Username</th>
-            <th>email</th>
-            <th>Password</th>
-            <th>created_at</th>
+            <th>address</th>
+            <th>value</th>
+            <th>type</th>
         </tr>
     </thead>
     <tbody>
@@ -20,20 +18,19 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        fetch("/api/users")
+        fetch("/api/realestate")
             .then(response => response.json())
             .then(data => {
-                let tableBody = document.querySelector("#usersTable tbody");
+                let tableBody = document.querySelector("#realEstateTable tbody");
                 tableBody.innerHTML = ""; // Clear table before adding new rows
 
-                data.forEach(user => {
+                data.forEach(realEstate => {
                     let row = `<tr>
-                            <td>${user.id}</td>
-                            <td>${user.username}</td>
-                            <td>${user.password}</td>
-                                <td>${user.email}</td>
-                                <td>${user.created_at}</td>
-                            <td><button onclick="loadDetails(${user.id})">View</button></td>
+                                <td>${realEstate.id}</td>
+                                <td>${realEstate.address}</td>
+                                <td>${realEstate.value}</td>
+                                    <td>${realEstate.type}</td>
+                            <td><button onclick="loadDetails(${realEstate.id})">View</button></td>
                         </tr>`;
                     tableBody.innerHTML += row;
                 });

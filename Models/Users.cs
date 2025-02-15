@@ -13,8 +13,7 @@
         public required string username { get; set; }
         public required string email { get; set; }
         public required string password { get; set; }
-        [Timestamp]
-        public byte[]? created_at { get; set; }
+        public DateTime created_at { get; set; }
     }
 
     public class UsersContext : DbContext
